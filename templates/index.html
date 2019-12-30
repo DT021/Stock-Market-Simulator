@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    C$50 Finance: Portfolio
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Symbol</th>
+          <th scope="col">Name</th>
+          <th scope="col">Shares</th>
+          <th scope="col">Price</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+
+      <tfoot>
+          <tr>
+              <td colspan="4"></td>
+              <td><b>{{ total | usd }}</b></td>
+          </tr>
+      </tfoot>
+
+      <tbody>
+        {% for stock in stocks %}
+          <tr>
+            <td>{{ stock.symbol | upper }}</td>
+            <td>{{ quotes[stock.symbol]["name"] }}</td>
+            <td>{{ stock.total_shares }}</td>
+            <td>{{ quotes[stock.symbol]["price"] | usd }}</td>
+            <td>{{ (quotes[stock.symbol]["price"] * stock.total_shares) | usd }}</td>
+          </tr>
+        {% endfor %}
+
+        <tr>
+            <td>CASH</td>
+            <td colspan="3"></td>
+            <td>{{ current_cash | usd }}</td>
+        </tr>
+
+      </tbody>
+    </table>
+{% endblock %}

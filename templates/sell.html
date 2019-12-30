@@ -1,19 +1,25 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    CS50 Finance: Buy
+    C$50 Finance: Sell
 {% endblock %}
 
 {% block main %}
-    <form action="/buy" method="post">
+   <form action="/sell" method="post">
         <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text" required>
+            <select class="form-control" name="symbol">
+                <option disabled selected value="">Symbol</option>
+                {% for stock in stocks %}
+                    <option value="{{ stock.symbol }}">{{ stock.symbol | upper}}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
             <input autocomplete="off" class="form-control" min="1" name="shares" placeholder="Shares" type="number" required>
         </div>
-        <button class="btn btn-primary" type="submit">Buy</button>
+        <button class="btn btn-primary" type="submit">Sell</button>
     </form>
+
 
     <script>
         // Disables form submissions if there are invalid fields

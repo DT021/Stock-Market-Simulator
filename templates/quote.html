@@ -1,19 +1,17 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    CS50 Finance: Buy
+    CS50 Finance: Quote
 {% endblock %}
 
 {% block main %}
-    <form action="/buy" method="post">
+    <form class="needs-validation" novalidate action="/quote" method="post">
         <div class="form-group">
             <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text" required>
         </div>
-        <div class="form-group">
-            <input autocomplete="off" class="form-control" min="1" name="shares" placeholder="Shares" type="number" required>
-        </div>
-        <button class="btn btn-primary" type="submit">Buy</button>
+        <button class="btn btn-primary" type="submit">Quote</button>
     </form>
+
 
     <script>
         // Disables form submissions if there are invalid fields
@@ -35,5 +33,4 @@
           }, false);
         })();
     </script>
-
 {% endblock %}
